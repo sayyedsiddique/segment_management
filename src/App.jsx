@@ -43,14 +43,28 @@ function App() {
     }
   };
 
-  // Send data to server 
+  // Send data to server
   const handleSaveSegment = () => {
     const payload = {
       segment_name: segmentName,
       schema: schemas.map((schema) => ({ [schema.value]: schema.label })),
     };
     // Replace with API call to send data to server
-    console.log("payload ", payload); 
+    console.log("payload ", payload);
+
+    fetch("https://webhook.site/e7e6f41e-e358-4241-9cb5-a0217a84c722", {
+      method: "post",
+      headers: {
+        "Content-Type": "apllication/json",
+      },
+      body: payload,
+    })
+      .then((res) => {
+        console.log("res ", res);
+      })
+      .catch((err) => {
+        console.log("err ", err);
+      });
     togglePopup();
   };
 
